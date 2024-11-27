@@ -3,7 +3,7 @@ Base Class to handle the data from multiple sources
 """
 
 import json
-from datetime import datetime
+from dateutil.parser import parse
 
 
 class Granule:
@@ -17,7 +17,7 @@ class Granule:
         :param metadata: A dictionary containing additional metadata (optional).
         """
         self.source = source
-        self.timestamp = timestamp
+        self.timestamp = parse(timestamp)
         self.content = content
         self.metadata = metadata if metadata else {}
 
@@ -29,7 +29,7 @@ class Granule:
         """
         return {
             "source": self.source,
-            "timestamp": self.timestamp,
+            "timestamp": str(self.timestamp),
             "content": self.content,
             "metadata": self.metadata
         }
@@ -52,7 +52,7 @@ class Granule:
         """
         return cls(
             source=data_dict.get("source"),
-            timestamp=data_dict.get("timestamp"),
+            timestamp=parse(data_dict.get("timestamp")),
             content=data_dict.get("content"),
             metadata=data_dict.get("metadata", {})
         )
@@ -70,5 +70,5 @@ class Granule:
 
     def __repr__(self):
         """ Return a string representation of the object. """
-        return (f"DataEntry(source={self.source}, timestamp={self.timestamp}, "
+        return (f"DataEntry(source={self.source}, timestamp={str(self.timestamp)}, "
                 f"content={self.content}, metadata={self.metadata})")

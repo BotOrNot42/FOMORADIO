@@ -7,6 +7,11 @@ from dateutil.parser import parse
 
 
 class Granule:
+    """
+    Granule represents the smallest basic particle of data collection
+    Data can be from any source but has to be converted to Granule to
+    pass on to the next function
+    """
     def __init__(self, source, timestamp, content, metadata=None):
         """
         Initialize a new DataEntry object.

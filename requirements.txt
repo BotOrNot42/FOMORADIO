@@ -16,6 +16,10 @@ oauthlib==3.2.2
     # via
     #   requests-oauthlib
     #   tweepy
+pyaes==1.6.1
+    # via telethon
+pyasn1==0.6.1
+    # via rsa
 python-dateutil==2.9.0.post0
     # via dateutils
 pytz==2024.2
@@ -26,8 +30,12 @@ requests==2.32.3
     #   tweepy
 requests-oauthlib==1.3.1
     # via tweepy
+rsa==4.9
+    # via telethon
 six==1.16.0
     # via python-dateutil
+telethon==1.38.1
+    # via -r requirements.in
 tweepy==4.14.0
     # via -r requirements.in
 urllib3==2.2.3

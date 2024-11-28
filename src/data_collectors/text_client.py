@@ -13,7 +13,7 @@ class TextClient(BaseCollector):
     source: str = "text"
     client: Any = None
 
-    def fetch(self) -> Tuple[List[Dict], str, str]:
+    def fetch(self) -> Tuple[List[Dict], str, str, str]:
         """
         TODO: Fetching Logic of Text Messages
         """

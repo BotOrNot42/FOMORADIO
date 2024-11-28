@@ -13,7 +13,7 @@ class ScrapperClient(BaseCollector):
     source: str = "scrapper"
     client: Any = None
 
-    def fetch(self) -> Tuple[List[Dict], str, str]:
+    def fetch(self) -> Tuple[List[Dict], str, str, str]:
         """
         TODO: Fetching Logic of Web Scrapping Messages
         """

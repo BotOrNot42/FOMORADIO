@@ -1,0 +1,10 @@
+{
+    "llm": {
+        "provider": "openai",
+        "config": {
+            "model": "gpt-4o-mini",
+            "temperature": 0.2,
+            "max_tokens": 5000
+        }
+    }
+}

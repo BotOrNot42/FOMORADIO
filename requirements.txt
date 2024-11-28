@@ -4,28 +4,94 @@
 #
 #    pip-compile
 #
+annotated-types==0.7.0
+    # via pydantic
+anyio==4.6.2.post1
+    # via
+    #   httpx
+    #   openai
+backoff==2.2.1
+    # via posthog
 certifi==2024.8.30
-    # via requests
+    # via
+    #   httpcore
+    #   httpx
+    #   requests
 charset-normalizer==3.4.0
     # via requests
 dateutils==0.6.12
     # via -r requirements.in
+distro==1.9.0
+    # via openai
+grpcio==1.68.0
+    # via
+    #   grpcio-tools
+    #   qdrant-client
+grpcio-tools==1.68.0
+    # via qdrant-client
+h11==0.14.0
+    # via httpcore
+h2==4.1.0
+    # via httpx
+hpack==4.0.0
+    # via h2
+httpcore==1.0.7
+    # via httpx
+httpx[http2]==0.27.2
+    # via
+    #   openai
+    #   qdrant-client
+hyperframe==6.0.1
+    # via h2
 idna==3.10
-    # via requests
+    # via
+    #   anyio
+    #   httpx
+    #   requests
+jiter==0.8.0
+    # via openai
+mem0ai==0.1.33
+    # via -r requirements.in
+monotonic==1.6
+    # via posthog
+numpy==2.1.3
+    # via qdrant-client
 oauthlib==3.2.2
     # via
     #   requests-oauthlib
     #   tweepy
+openai==1.55.2
+    # via mem0ai
+portalocker==2.10.1
+    # via qdrant-client
+posthog==3.7.4
+    # via mem0ai
+protobuf==5.29.0
+    # via grpcio-tools
 pyaes==1.6.1
     # via telethon
 pyasn1==0.6.1
     # via rsa
+pydantic==2.10.2
+    # via
+    #   mem0ai
+    #   openai
+    #   qdrant-client
+pydantic-core==2.27.1
+    # via pydantic
 python-dateutil==2.9.0.post0
-    # via dateutils
+    # via
+    #   dateutils
+    #   posthog
 pytz==2024.2
-    # via dateutils
+    # via
+    #   dateutils
+    #   mem0ai
+qdrant-client==1.12.1
+    # via mem0ai
 requests==2.32.3
     # via
+    #   posthog
     #   requests-oauthlib
     #   tweepy
 requests-oauthlib==1.3.1
@@ -33,13 +99,32 @@ requests-oauthlib==1.3.1
 rsa==4.9
     # via telethon
 six==1.16.0
-    # via python-dateutil
+    # via
+    #   posthog
+    #   python-dateutil
+sniffio==1.3.1
+    # via
+    #   anyio
+    #   httpx
+    #   openai
+sqlalchemy==2.0.36
+    # via mem0ai
 telethon==1.38.1
     # via -r requirements.in
+tqdm==4.67.1
+    # via openai
 tweepy==4.14.0
     # via -r requirements.in
+typing-extensions==4.12.2
+    # via
+    #   openai
+    #   pydantic
+    #   pydantic-core
+    #   sqlalchemy
 urllib3==2.2.3
-    # via requests
+    # via
+    #   qdrant-client
+    #   requests
 
 # The following packages are considered to be unsafe in a requirements file:
 # setuptools

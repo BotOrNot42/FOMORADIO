@@ -13,7 +13,7 @@ class NewsClient(BaseCollector):
     source: str = "news"
     client: Any = None
 
-    def fetch(self) -> Tuple[List[Dict], str, str]:
+    def fetch(self) -> Tuple[List[Dict], str, str, str]:
         """
         TODO: Fetching Logic of News Messages
         """

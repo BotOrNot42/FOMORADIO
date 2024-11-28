@@ -12,18 +12,20 @@ class Granule:
     Data can be from any source but has to be converted to Granule to
     pass on to the next function
     """
-    def __init__(self, source, timestamp, content, metadata=None):
+    def __init__(self, source, timestamp, content, user, metadata=None):
         """
         Initialize a new DataEntry object.
 
-        :param source: The source of the data (e.g., "Twitter", "Telegram").
+        :param source: The source of the data (e.g., "twitter", "telegram").
         :param timestamp: The timestamp of the data (e.g., ISO 8601 string).
         :param content: The actual content (e.g., tweet text, message text).
+        :param user: The author of the content (e.g., 123, Degen).
         :param metadata: A dictionary containing additional metadata (optional).
         """
         self.source = source
         self.timestamp = parse(timestamp)
         self.content = content
+        self.user = user
         self.metadata = metadata if metadata else {}
 
     def to_dict(self):
@@ -36,6 +38,7 @@ class Granule:
             "source": self.source,
             "timestamp": str(self.timestamp),
             "content": self.content,
+            "user": self.user,
             "metadata": self.metadata
         }
 
@@ -59,6 +62,7 @@ class Granule:
             source=data_dict.get("source"),
             timestamp=parse(data_dict.get("timestamp")),
             content=data_dict.get("content"),
+            user=data_dict.get("user"),
             metadata=data_dict.get("metadata", {})
         )
 
@@ -76,4 +80,4 @@ class Granule:
     def __repr__(self):
         """ Return a string representation of the object. """
         return (f"DataEntry(source={self.source}, timestamp={str(self.timestamp)}, "
-                f"content={self.content}, metadata={self.metadata})")
+                f"content={self.content}, user={self.user}, metadata={self.metadata})")

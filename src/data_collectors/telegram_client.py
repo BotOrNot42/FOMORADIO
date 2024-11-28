@@ -27,7 +27,7 @@ class TelegramClient(BaseCollector):
         self.client = telethon.TelegramClient(session_name, api_id, api_hash)
         super().__init__()
 
-    def fetch(self) -> Tuple[List[Dict], str, str]:
+    def fetch(self) -> Tuple[List[Dict], str, str, str]:
         """
         TODO: Fetching Logic of Telegram Messages
         """

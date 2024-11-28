@@ -13,22 +13,25 @@ class TwitterClient(BaseCollector):
     Collector Wrapper for the Twitter
     """
     source: str = "twitter"
+    timestamp_key: str = "created_at"
+    content_key: str = "text"
+    user_key: str = "author_id"
     client: tweepy.Client = None
-    host_twitter_handle: str = None
+    radio_handle: str = None
     influencers: List = None
 
-    def __init__(self, bearer_token: str, host_handle: str, influencers: List):
+    def __init__(self, bearer_token: str, radio_handle: str, influencers: List):
         """
         Initializes a new instance of the class
         :param bearer_token: The API Token from the Twitter Developer Portal.
         :return: None
         """
         self.client = tweepy.Client(bearer_token=bearer_token)
-        self.host_twitter_handle = host_handle
+        self.radio_handle = radio_handle
         if influencers:
             self.influencers = influencers
         else:
-            self.influencers = list(host_handle)
+            self.influencers = list(radio_handle)
         super().__init__()
 
     def fetch_tweets(self, query: str) -> List[Dict]:
@@ -38,8 +41,9 @@ class TwitterClient(BaseCollector):
         :param query: Query to search for
         :return: List of tweets
         """
-        start_time = datetime.now()
-        end_time = datetime.now() - timedelta(seconds=15)
+        current_time = datetime.utcnow()
+        start_time = current_time - timedelta(minutes=15)
+        end_time = current_time - timedelta(seconds=10)
         response = self.client.search_recent_tweets(
             query=query,
             max_results=15,
@@ -58,7 +62,7 @@ class TwitterClient(BaseCollector):
         Fetches tweets in which the host is mentioned
         for the last 15 minutes
         """
-        query = f"@{self.host_twitter_handle} -is:retweet"
+        query = f"@{self.radio_handle} -is:retweet"
         return self.fetch_tweets(query)
 
     def get_tweets_from_influencer(self) -> List[Dict]:
@@ -69,10 +73,11 @@ class TwitterClient(BaseCollector):
         query = " OR ".join([f"from:{username}" for username in self.influencers])
         return self.fetch_tweets(query)
 
-    def fetch(self) -> Tuple[List[Dict], str, str]:
+    def fetch(self) -> Tuple[List[Dict], str, str, str]:
         """
         Method to fetch the tweets from Twitter
         """
         pick = [self.get_latest_mentions, self.get_tweets_from_influencer]
         func = random.choice(pick)
-        return func()
+        tweets = func()
+        return tweets, self.timestamp_key, self.content_key, self.user_key

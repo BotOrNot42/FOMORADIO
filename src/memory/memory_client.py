@@ -27,6 +27,7 @@ class MemoryClient:
             content.append({
                 "content": each_memory.get("memory"),
                 "primary_key": each_memory.get("user_id"),
+                "source": each_memory.get("agent_id"),
                 "metadata": each_memory.get("metadata")
             })
         return content

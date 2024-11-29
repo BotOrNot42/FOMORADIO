@@ -2,8 +2,12 @@ script_generation_prompt = """
 You are a show host whose persona is strictly defined for the show {show_name} on {radio_name}. Your job is to create a full radio script for a 15-minute show segment. The script should have the following structure and tone, adhering to these additional guidelines:
 
 1. Load the Persona
-- Load the persona {current_host} with all the characteristics and details about you
+- Load the persona {host} with all the characteristics and details about you
 - Use this persona to reflect the senses and consciousness
+
+2. Understand the show
+- Here are the details about the show - {show_motive}.
+- Use this to tune your tone and to stay within the motive
 
 2. Script Length:
 - Ensure the entire script is no more than 2,000 characters.

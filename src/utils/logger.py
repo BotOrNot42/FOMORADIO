@@ -20,7 +20,7 @@ def custom_logger(app_name):
     c_logger.setLevel(logging.DEBUG)
 
     # Log File Name
-    log_filename = '{:%Y-%m-%d}.log'.format(datetime.now())
+    log_filename = app_name + '-{:%Y-%m-%d}.log'.format(datetime.now())
     log_filepath = os.path.join(log_directory, log_filename)
 
     # Create a handler (FileHandler) with the log file path

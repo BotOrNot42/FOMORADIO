@@ -23,19 +23,21 @@ class ScriptClient:
         self.next_host = next_host
         self.show_details = show_details
 
-    def extract_memories(self):
+    def extract_memories(self, agent: str):
         memories = []
         for each_user in self.users:
             memories.extend(self.current_host['memory'].get(
                 "List the latest tweets from this user for the past 15 minutes",
-                user_id=each_user
+                user_id=each_user,
+                agent_id=agent,
             ))
         return MemoryClient.memory_to_content(memories)
 
-    def generate_prompt(self):
-        contents = self.extract_memories()
+    def generate_prompt(self, agent: str):
+        contents = self.extract_memories(agent)
         return script_generation_prompt.format(
-            show_name=self.show_details.get("show_name"),
+            show_name=self.show_details.get("name"),
+            show_motive=self.show_details.get("description"),
             radio_name=self.show_details.get("aired_on"),
             host=self.current_host,
             host_name=self.current_host.get("host_name"),

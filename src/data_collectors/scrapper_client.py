@@ -10,6 +10,7 @@ class ScrapperClient(BaseCollector):
     """
     Collector Wrapper for the Web Scrapper
     """
+
     source: str = "scrapper"
     client: Any = None
 

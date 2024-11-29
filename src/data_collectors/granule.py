@@ -12,6 +12,7 @@ class Granule:
     Data can be from any source but has to be converted to Granule to
     pass on to the next function
     """
+
     def __init__(self, source, timestamp, content, user, metadata=None):
         """
         Initialize a new DataEntry object.
@@ -39,7 +40,7 @@ class Granule:
             "timestamp": str(self.timestamp),
             "content": self.content,
             "user": self.user,
-            "metadata": self.metadata
+            "metadata": self.metadata,
         }
 
     def to_json(self):
@@ -63,7 +64,7 @@ class Granule:
             timestamp=parse(data_dict.get("timestamp")),
             content=data_dict.get("content"),
             user=data_dict.get("user"),
-            metadata=data_dict.get("metadata", {})
+            metadata=data_dict.get("metadata", {}),
         )
 
     @classmethod
@@ -78,6 +79,8 @@ class Granule:
         return cls.from_dict(data_dict)
 
     def __repr__(self):
-        """ Return a string representation of the object. """
-        return (f"DataEntry(source={self.source}, timestamp={str(self.timestamp)}, "
-                f"content={self.content}, user={self.user}, metadata={self.metadata})")
+        """Return a string representation of the object."""
+        return (
+            f"DataEntry(source={self.source}, timestamp={str(self.timestamp)}, "
+            f"content={self.content}, user={self.user}, metadata={self.metadata})"
+        )

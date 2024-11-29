@@ -65,6 +65,9 @@ while True:
         llm_client = LLMClient(llm_config)
         client, interact = llm_client.initialize_client()
         response = interact(client, prompt)
+        current_rj_name = filter_rjs[current_rj_index].get("host_name")
+        cleaned_response = response.replace('\n', ' ')
+        logger.info(f"Script for {current_rj_name} - {cleaned_response}")
         rj_index += 1
 
     wait_for_next_show(wait_time, logger)

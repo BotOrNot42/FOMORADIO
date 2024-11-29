@@ -10,6 +10,7 @@ class TextClient(BaseCollector):
     """
     Collector Wrapper for the Text related apps
     """
+
     source: str = "text"
     client: Any = None
 

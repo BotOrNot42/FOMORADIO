@@ -10,6 +10,6 @@ def json_loader(path: str):
     :param path: Path of the JSON File
     :return: JSON loaded as a dictionary
     """
-    with open(path, 'r') as file:
+    with open(path, "r", encoding="utf-8") as file:
         print(f"Loaded Configuration : {path}")
         return json.load(file)

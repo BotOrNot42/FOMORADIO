@@ -2,9 +2,9 @@
 Twitter Client for FOMO
 """
 import random
-from pytz import UTC
 from typing import Tuple, List, Dict
 from datetime import datetime, timedelta
+from pytz import UTC
 import tweepy
 from .collector import BaseCollector
 
@@ -13,6 +13,7 @@ class TwitterClient(BaseCollector):
     """
     Collector Wrapper for the Twitter
     """
+
     source: str = "twitter"
     timestamp_key: str = "created_at"
     content_key: str = "text"
@@ -49,11 +50,18 @@ class TwitterClient(BaseCollector):
             query=query,
             max_results=15,
             tweet_fields=[
-                "author_id", "created_at", "id", "text", "public_metrics",
-                "entities", "geo", "lang", "source"
+                "author_id",
+                "created_at",
+                "id",
+                "text",
+                "public_metrics",
+                "entities",
+                "geo",
+                "lang",
+                "source",
             ],
             start_time=start_time,
-            end_time=end_time
+            end_time=end_time,
         )
         tweets = response.data
         return [i.data for i in tweets] if tweets and len(tweets) > 0 else []

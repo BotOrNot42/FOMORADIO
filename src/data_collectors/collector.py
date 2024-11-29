@@ -9,6 +9,7 @@ class BaseCollector:
     """
     Generic Collector
     """
+
     source: str = None
 
     def __init__(self):

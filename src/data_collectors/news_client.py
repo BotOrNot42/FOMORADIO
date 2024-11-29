@@ -10,6 +10,7 @@ class NewsClient(BaseCollector):
     """
     Collector Wrapper for the News
     """
+
     source: str = "news"
     client: Any = None
 

@@ -11,6 +11,7 @@ class TelegramClient(BaseCollector):
     """
     Collector Wrapper for the Telegram
     """
+
     source: str = "telegram"
     client: telethon.TelegramClient = None
     bearer_token: str = None

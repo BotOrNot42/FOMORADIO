@@ -1,6 +1,7 @@
 """
 Utility Functions for Fomo
 """
+from typing import Tuple, Union
 import json
 import os
 
@@ -16,19 +17,31 @@ def json_loader(path: str):
         return json.load(file)
 
 
-def dir_checker(path):
+def dir_checker(path) -> None:
+    """
+    Checks if the directory is existing or not. If the directory not exists
+    this function will create one.
+    :param path: Path of the directory to check
+    :return: None
+    """
     if not os.path.exists(path):
         try:
             os.makedirs(path)
-        except OSError as e:
-            raise OSError(f"Error creating log directory: {e}") from e
+        except OSError as exception:
+            raise OSError(f"Error creating log directory: {exception}") from exception
 
 
-def save_file(buffer, path: str):
+def save_file(buffer, path: str) -> Tuple[bool, Union[None, str]]:
+    """
+    Saves a file in the given path provided the buffers
+    :param buffer: Buffer of the file to be saved
+    :param path: Path of the file to be saved
+    :return: Bool if the file is saved or not along with the corresponding errors
+    """
     try:
-        with open(path, "wb") as f:
+        with open(path, "wb") as file:
             for chunk in buffer:
-                f.write(chunk)
+                file.write(chunk)
         return True, None
-    except Exception as e:
-        return False, str(e)
+    except Exception as exception:
+        return False, str(exception)

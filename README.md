@@ -19,53 +19,71 @@ The FOMO Framework is designed to aggregate content from multiple sources, analy
 
 It is recommended to use Python version 3.11 or higher for this framework. You can set up a virtual environment using the following commands:
 
-\```bash
-python -m venv venv
+```bash
+python -m venv env
 source venv/bin/activate  # On Unix or MacOS
-venv\\Scripts\\activate  # On Windows
-\```
+venv/Scripts/activate  # On Windows
+```
 
 ### Installing Dependencies
 
 First, install `pip-tools` for dependency management:
 
-\```bash
+```bash
 pip install pip-tools
-\```
+```
 
 Compile and install all dependencies using `pip-compile` and `pip`:
 
-\```bash
+```bash
 pip-compile requirements.in
 pip install -r requirements.txt
-\```
+```
 
-### Installing FFmpeg
+### Installing ffmpeg
 
 FFmpeg is required for handling audio and video files. Here's how you can install it on different operating systems:
 
 - **macOS**:
-  \```bash
+  ```bash
   brew install ffmpeg
-  \```
+  ```
 
 - **Linux (Ubuntu/Debian)**:
-  \```bash
+  ```bash
   sudo apt update
   sudo apt install ffmpeg
-  \```
+  ```
 
 - **Windows**:
   Download the static builds from the FFmpeg website, then add the `bin` directory to your system’s PATH.
 
-## Known Limitations
+### Environment Variables
+To run the fomo framework locally, there are some environment variables needed. Here are the details
 
-Currently, the framework supports only one show with multiple hosts. Future versions are planned to extend support to multiple shows.
+- x_bearer_token - X Bearer Token from the Developer Account
+- radio_handle - X Handle for the Radio Station
+- influencers - X Handles of the influencers to scrap tweets from
+- tts_api_key - Text to Speech client's API Key (defaults to ElevenLabs)
+
+### Running Instructions
+Framework can be start by running a simple command after setting up virtual environment
+
+```bash
+python run.py
+```
+
+## Limitations
+
+- Currently, the framework supports only one show with multiple hosts. Future versions are planned to extend support to multiple shows.
+
+## Issues
+
+- You guys let us know :)
 
 ## Dependencies
 
 Ensure the following dependencies are included in your `requirements.txt`:
 
-- mem0
-- ffmpeg-python
-- Any other libraries your project requires
+- ffmpeg
+- mem0ai

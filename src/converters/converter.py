@@ -11,6 +11,16 @@ from pydub import AudioSegment
 def mp3_to_mp4_converter(
     config, mp3_path, mp4_path, temp_video_path, show_info
 ) -> Tuple[bool, Union[str, None]]:
+    """
+    Helper function to generate video based on the audio.
+    Used audio's to generate the waveform
+    :param config: Configuration of the video
+    :param mp3_path: Path of the audio file
+    :param mp4_path: Path of the video file
+    :param temp_video_path: Path of the temporary video file
+    :param show_info: Details of the show
+    :return: Bool to check if the video file is generated along with the errors
+    """
     try:
         # Load audio
         audio = AudioSegment.from_file(mp3_path)
@@ -32,7 +42,7 @@ def mp3_to_mp4_converter(
             frame = np.zeros((video_size[1], video_size[0], 3), dtype=np.uint8)
 
             # Add text
-            top_text = "FOMO RADIO AI"
+            top_text = show_info.get("aired_on")
             top_font = cv2.FONT_HERSHEY_DUPLEX
             top_font_scale = 1.5
             top_color = (0, 165, 255)  # Orange text
@@ -79,9 +89,9 @@ def mp3_to_mp4_converter(
             center = video_size[1] // 2
 
             # Draw waveform on the frame
-            for x, sample in enumerate(wave[: video_size[0]]):
-                y = int(center + sample * 200)
-                cv2.line(frame, (x, center), (x, y), (0, 255, 0), 2)
+            for x_axis, sample in enumerate(wave[: video_size[0]]):
+                y_axis = int(center + sample * 200)
+                cv2.line(frame, (x_axis, center), (x_axis, y_axis), (0, 255, 0), 2)
             out.write(frame)
         out.release()
 
@@ -109,5 +119,5 @@ def mp3_to_mp4_converter(
         ]
         subprocess.run(ffmpeg_command, check=True)
         return True, None
-    except Exception as e:
-        return False, str(e)
+    except Exception as exception:
+        return False, str(exception)

@@ -12,6 +12,6 @@ x_influencers = os.environ.get("influencers")
 tts_api_key = os.environ.get("tts_api_key")
 
 # Folder Environment Variables
-media_folder = "media"
-log_folder = "logs"
-temp_video_file = "media/temp_mp4.mp4"
+MEDIA_FOLDER = "media"
+LOG_FOLDER = "logs"
+TEMP_VIDEO_FILE = "media/temp_mp4.mp4"

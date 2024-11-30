@@ -37,7 +37,9 @@ class TTSClient:
             interact = self.interact_elevenlabs
         return client, interact
 
-    def interact_elevenlabs(self, tts_client: Callable, script: str, voice_id: str) -> str:
+    def interact_elevenlabs(
+        self, tts_client: Callable, script: str, voice_id: str
+    ) -> str:
         """
         Helper Function to interact with the Eleven Labs Audio Models
         :param tts_client: Defines the provider's TTS client functions
@@ -46,13 +48,7 @@ class TTSClient:
         :return: Generated Audio Response from the voice model
         """
         client = tts_client(api_key=self.api_key)
-        voice_settings = VoiceSettings(
-            stability=0.2,
-            similarity_boost=0.8
-        )
+        voice_settings = VoiceSettings(stability=0.2, similarity_boost=0.8)
         return client.generate(
-            text=script,
-            voice=voice_id,
-            model=self.model,
-            voice_settings=voice_settings
+            text=script, voice=voice_id, model=self.model, voice_settings=voice_settings
         )

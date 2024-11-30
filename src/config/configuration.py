@@ -15,3 +15,9 @@ tts_api_key = os.environ.get("tts_api_key")
 MEDIA_FOLDER = "media"
 LOG_FOLDER = "logs"
 TEMP_VIDEO_FILE = "media/temp_mp4.mp4"
+
+# Consumer Environment Variables
+x_api_key = os.environ.get("x_api_key")
+x_api_secret = os.environ.get("x_api_secret")
+x_access_token = os.environ.get("x_access_token")
+x_access_token_secret = os.environ.get("x_access_token_secret")

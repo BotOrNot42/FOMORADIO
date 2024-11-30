@@ -4,7 +4,7 @@ Twitter Client for FOMO
 import random
 from typing import Tuple, List, Dict
 from datetime import datetime, timedelta
-from pytz import UTC
+import pytz
 import tweepy
 from .collector import BaseCollector
 
@@ -43,7 +43,7 @@ class TwitterClient(BaseCollector):
         :param query: Query to search for
         :return: List of tweets
         """
-        current_time = datetime.now(UTC)
+        current_time = datetime.now(pytz.UTC)
         start_time = current_time - timedelta(minutes=15)
         end_time = current_time - timedelta(seconds=10)
         response = self.client.search_recent_tweets(

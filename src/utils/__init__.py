@@ -4,6 +4,7 @@ Utility Functions for Fomo
 from typing import Tuple, Union
 import json
 import os
+from .eexceptions import FomoException
 
 
 def json_loader(path: str):
@@ -43,5 +44,5 @@ def save_file(buffer, path: str) -> Tuple[bool, Union[None, str]]:
             for chunk in buffer:
                 file.write(chunk)
         return True, None
-    except Exception as exception:
+    except FomoException as exception:
         return False, str(exception)

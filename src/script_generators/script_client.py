@@ -3,7 +3,7 @@ Generates Script for the Show
 """
 from typing import List, Dict
 from src.memory import MemoryClient
-from src.config.prompt import SCRIPT_GENERATION_PROMPT
+from src.config.prompt import SCRIPT_GENERATION_PROMPT, CONTENT_GENERATION_PROMPT
 
 
 class ScriptClient:
@@ -57,5 +57,18 @@ class ScriptClient:
             host_name=self.current_host.get("host_name"),
             current_utc_time=current_time,
             alternate_host_name=self.next_host,
+            formatted_content=contents,
+        )
+
+    def generate_content(self, agent: str) -> str:
+        """
+        Generate the content used for consuming the contents for the show
+        :param agent: Source of the collected data to fed to the script generation
+        :return: Prompt to create the show script
+        """
+        contents = self.extract_memories(agent)
+        return CONTENT_GENERATION_PROMPT.format(
+            show_name=self.show_details.get("name"),
+            host_name=self.current_host.get("host_name"),
             formatted_content=contents,
         )

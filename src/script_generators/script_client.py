@@ -2,8 +2,6 @@
 Generates Script for the Show
 """
 from typing import List, Dict
-from datetime import datetime
-from pytz import UTC
 from src.memory import MemoryClient
 from src.config.prompt import SCRIPT_GENERATION_PROMPT
 
@@ -43,10 +41,11 @@ class ScriptClient:
             )
         return MemoryClient.memory_to_content(memories)
 
-    def generate_prompt(self, agent: str) -> str:
+    def generate_prompt(self, agent: str, current_time: str) -> str:
         """
         Generate the prompt used for creating the script for the show
         :param agent: Source of the collected data to fed to the script generation
+        :param current_time: Current time of the show
         :return: Prompt to create the show script
         """
         contents = self.extract_memories(agent)
@@ -56,7 +55,7 @@ class ScriptClient:
             radio_name=self.show_details.get("aired_on"),
             host=self.current_host,
             host_name=self.current_host.get("host_name"),
-            current_utc_time=datetime.now(UTC).strftime("%I:%M %p UTC"),
+            current_utc_time=current_time,
             alternate_host_name=self.next_host,
             formatted_content=contents,
         )

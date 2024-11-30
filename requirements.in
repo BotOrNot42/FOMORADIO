@@ -3,3 +3,6 @@ setuptools
 dateutils
 telethon
 mem0ai
+elevenlabs
+pydub
+opencv-python

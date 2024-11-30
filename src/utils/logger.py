@@ -4,17 +4,11 @@ Custom logger module for the framework
 import logging
 from datetime import datetime
 import os
+from src.utils import dir_checker
 
 # User Defined Variables
-LOG_DIRECTORY = "."
+LOG_DIRECTORY = "logs"
 FORMATTER = logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(message)s")
-
-# Ensure the log directory exists
-if not os.path.exists(LOG_DIRECTORY):
-    try:
-        os.makedirs(LOG_DIRECTORY)
-    except OSError as e:
-        raise OSError(f"Error creating log directory: {e}") from e
 
 
 def custom_logger(app_name) -> logging.Logger:
@@ -28,6 +22,8 @@ def custom_logger(app_name) -> logging.Logger:
     c_logger.setLevel(logging.DEBUG)
     current_date = datetime.now().strftime("%Y-%m-%d")
     log_filename = f"{app_name.replace(' ', '')}-{current_date}.log"
+    # Ensure the log directory exists
+    dir_checker(LOG_DIRECTORY)
     log_filepath = os.path.join(LOG_DIRECTORY, log_filename)
     # File Handler
     file_handler = logging.FileHandler(log_filepath)

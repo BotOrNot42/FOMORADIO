@@ -1,0 +1,14 @@
+{
+  "llm": {
+    "provider": "openai",
+    "model": "gpt-4o-mini"
+  },
+  "tts": {
+    "provider": "elevenlabs",
+    "model": "eleven_monolingual_v1"
+  },
+  "mp4": {
+    "resolution": [1280, 720],
+    "fps": 30
+  }
+}

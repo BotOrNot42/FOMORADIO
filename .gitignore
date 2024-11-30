@@ -160,4 +160,5 @@ scheduler.json
 .idea
 
 #Local Settings
-local_config.json
+logs
+media

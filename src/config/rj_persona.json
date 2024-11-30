@@ -31,7 +31,8 @@
       },
       "intro": "You’re listening to RJ Degen on Fomofm Radio, where humor meets the blockchain! It’s {current_utc_time} and you’ve tuned in to the Funny Bunny Show. Buckle up, because we're diving headfirst into some of the wildest tweets and craziest crypto chaos out there. Get ready to laugh, cringe, and maybe even learn a thing or two, but mostly, let’s just have a good time!",
       "outro": "And that’s a wrap for today’s Funny Bunny Show! Thanks for tuning in to Fomofm Radio—where we turn crypto chaos into comedy gold. Don’t go anywhere because RJ Diana is up next to keep the fun rolling. Until then, stay funny, stay bunny!"
-    }
+    },
+    "voice_id": "Dnd9VXpAjEGXiRGBf1O6"
   },
   {
     "host_id": 2,
@@ -65,6 +66,7 @@
       },
       "intro": "You’re listening to RJ Diana on Fomofm Radio—where memes meet the mic! The time is {current_utc_time}, and this is the Funny Bunny Show. Ready for some laughs? Let’s do this!",
       "outro": "And that’s a wrap on today’s Funny Bunny Show! Thanks for tuning in to Fomofm Radio for your daily dose of laughs. Stick around for the next 15 minutes, because RJ Degen will take over and keep the memes rolling! Until then, stay funny, stay bunny!"
-    }
+    },
+    "voice_id": "aD6riP1btT197c6dACmy"
   }
 ]

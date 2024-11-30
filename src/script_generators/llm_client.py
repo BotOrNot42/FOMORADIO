@@ -52,12 +52,3 @@ class LLMClient:
             )
             choice = completion.choices[0] if len(completion.choices) > 0 else None
             return choice.message.content
-
-    def interact(self, prompt: str) -> str:
-        """
-        Interacts with the LLM Provider and model to generate the response
-        :param prompt: Prompt for the LLM Model
-        :return: Generated response
-        """
-        llm_client, interact = self.initialize_client()
-        return interact(llm_client, prompt)

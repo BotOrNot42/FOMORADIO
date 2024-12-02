@@ -6,7 +6,7 @@ import os
 # Data Collection Environment Variables
 x_bearer_token = os.environ.get("x_bearer_token")
 x_radio_handle = os.environ.get("radio_handle")
-x_influencers = os.environ.get("influencers")
+x_influencers = os.environ.get("influencers").split(",")
 
 # TTS Environment Variables
 tts_api_key = os.environ.get("tts_api_key")

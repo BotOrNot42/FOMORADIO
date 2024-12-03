@@ -59,12 +59,19 @@ FFmpeg is required for handling audio and video files. Here's how you can instal
   Download the static builds from the FFmpeg website, then add the `bin` directory to your system’s PATH.
 
 ### Environment Variables
-To run the fomo framework locally, there are some environment variables needed. Here are the details
+To run the fomo framework locally, there are some environment variables to be set. These can be set in with OS respective scripts where the keys needs to be updated correctly. 
 
-- x_bearer_token - X Bearer Token from the Developer Account
-- radio_handle - X Handle for the Radio Station
-- influencers - X Handles of the influencers to scrap tweets from
-- tts_api_key - Text to Speech client's API Key (defaults to ElevenLabs)
+- For Linux and Mac OS, run this command to load the variables.
+```bash
+env_mac.sh
+```
+
+- For Windows, run this command to load the variables.
+```ps
+env_win.bat
+```
+
+
 
 ### Running Instructions
 Framework can be start by running a simple command after setting up virtual environment

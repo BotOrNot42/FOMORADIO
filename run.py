@@ -92,16 +92,25 @@ def main():
     episode_count = 1
     rj_index = 0
     wait_time = None
+    max_retries = 5
     # Initializing the modules
     show_config, memory_config, fomo_config, persona_config = initialize()
     persona_config = load_memory(persona_config.get("personas"), memory_config)
     # Starting the infinite loop
     while True:
+        # Exit condition if the data collection keeps going on
+        if max_retries == 0:
+            logger.info("No content found. Skipping the show")
+            wait_for_next_show(360, logger)
+            max_retries = 5
+            continue
+
         # Collecting the data from multiple sources
         contents, source = data_collectors()
         spoken_users = [i.get("user") for i in contents]
         logger.info("Got %d contents from %s", len(contents), source)
         if len(contents) == 0:
+            max_retries -= 1
             logger.info("Trying different logic to fetch content")
             continue
 
@@ -134,15 +143,15 @@ def main():
                 filter_rjs[current_rj_index],
                 filter_rjs[next_rj_index].get("host_name"),
             )
-            prompt = script_client.generate_prompt(source, current_time)
-            generated_script = llm_interact(llm_client, prompt)
+            script_prompt = script_client.generate_prompt(source, current_time)
+            generated_script = llm_interact(llm_client, script_prompt)
             current_rj_name = filter_rjs[current_rj_index].get("host_name")
             cleaned_script = generated_script.replace("\n", " ")
             logger.info("Script for %s - %s", current_rj_name, cleaned_script)
 
             # Generating the content for posting
-            prompt = script_client.generate_content(source)
-            generated_content = llm_interact(llm_client, prompt)
+            content_prompt = script_client.generate_content(source)
+            generated_content = llm_interact(llm_client, content_prompt)
             cleaned_content = generated_content.replace("\n", " ")
             logger.info("Content for %s - %s", current_rj_name, cleaned_content)
 
@@ -170,7 +179,7 @@ def main():
 
             # Generating video file
             show_details = (
-                f"Funny Bunny Show | Host: {current_rj_name}  | "
+                f"{each_show.get('name')} | Host: {current_rj_name}  | "
                 f"Episode: {episode_count} | {current_time}"
             )
             is_video_saved, video_errors = mp3_to_mp4_converter(

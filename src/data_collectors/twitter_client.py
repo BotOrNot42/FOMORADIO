@@ -30,7 +30,7 @@ class TwitterClient(BaseCollector):
         """
         self.client = tweepy.Client(bearer_token=bearer_token)
         self.radio_handle = radio_handle
-        if influencers:
+        if ",".join(influencers) != "":
             self.influencers = influencers
         else:
             self.influencers = list(radio_handle)

@@ -16,7 +16,7 @@ class TwitterConsumerClient:
     """
     Consumer Wrapper for the Twitter
     """
-    source : str = "twitter"
+    source: str = "twitter"
     client: tweepy.Client = None
     api_client: tweepy.API = None
     max_retries: int = 3

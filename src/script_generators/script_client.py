@@ -34,7 +34,7 @@ class ScriptClient:
         for each_user in self.users:
             memories.extend(
                 self.current_host["memory"].get(
-                    "List the latest tweets from this user for the past 15 minutes",
+                    "List the 20 latest contents from this user",
                     user_id=each_user,
                     agent=agent,
                 )

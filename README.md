@@ -1,7 +1,21 @@
 
 # FOMO Radio Framework 🎙️
 
-The FOMO Radio Framework is designed to revolutionize content consumption by combining AI, real-time data aggregation, and voice synthesis. Whether you're building autonomous radio stations or creating personalized audio summaries, this framework empowers you to deliver intelligent, engaging, and tailored audio experiences.
+The FOMO Radio Framework is designed to revolutionize content consumption by combining AI, real-time data aggregation, and voice synthesis. Whether you're building autonomous radio stations or creating personalized audio summaries, this framework empowers you to deliver intelligent, engaging and tailored audio experiences.
+
+## 🌐 Explore More FOMO Radio Content
+
+- **Website (Recent & Past Shows)**:  
+  [https://fomofm.show](https://fomofm.show)
+
+- **🎧 All Shows Broadcasted on X (formerly Twitter)**:  
+  [https://x.com/FomoRadioAi](https://x.com/FomoRadioAi)
+
+- **📻 Listen to Shows On-Demand**:  
+  [https://audio.fomofm.show](https://audio.fomofm.show)
+
+- **🎙️ Spotify Playlist**:  
+  [https://open.spotify.com/show/0pLewfsLrxDrwKRgihRmBr](https://open.spotify.com/show/0pLewfsLrxDrwKRgihRmBr)
 
 ---
 

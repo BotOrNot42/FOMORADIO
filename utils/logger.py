@@ -4,7 +4,7 @@ Custom logger module for the framework
 import logging
 from datetime import datetime
 import os
-from src.utils import dir_checker
+from utils import dir_checker
 
 # User Defined Variables
 LOG_DIRECTORY = "logs"

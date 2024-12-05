@@ -2,8 +2,8 @@
 Generates Script for the Show
 """
 from typing import List, Dict
-from src.memory import MemoryClient
-from src.config.prompt import SCRIPT_GENERATION_PROMPT, CONTENT_GENERATION_PROMPT
+from memory import MemoryClient
+from config.prompt import SCRIPT_GENERATION_PROMPT, CONTENT_GENERATION_PROMPT
 
 
 class ScriptClient:

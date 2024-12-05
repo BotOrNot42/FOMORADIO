@@ -69,7 +69,7 @@ class TwitterConsumerClient:
         try:
             is_uploaded, detail = self.upload_media(path)
             if is_uploaded:
-                self.client.create_tweet(text=tweet_content, media_ids=list(detail))
+                self.client.create_tweet(text=tweet_content, media_ids=[detail])
                 return True, None
             raise TwitterException(detail)
         except TwitterException as exception:

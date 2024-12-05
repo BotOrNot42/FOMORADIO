@@ -5,16 +5,16 @@ from typing import Tuple, Dict, List
 from datetime import datetime
 from uuid import uuid4
 import pytz
-from src.utils.logger import custom_logger
-from src.config import configuration as cf
-from src.utils import json_loader, save_file, dir_checker
-from src.activities import wait_for_next_show
-from src.memory import MemoryClient
-from src.data_collectors import TwitterClient
-from src.script_generators import ScriptClient, LLMClient
-from src.tts_transformers import TTSClient
-from src.converters import mp3_to_mp4_converter
-from src.consumers import TwitterConsumerClient
+from utils.logger import custom_logger
+from config import configuration as cf
+from utils import json_loader, save_file, dir_checker
+from activities import wait_for_next_show
+from memory import MemoryClient
+from data_collectors import TwitterClient
+from script_generators import ScriptClient, LLMClient
+from tts_transformers import TTSClient
+from converters import mp3_to_mp4_converter
+from consumers import TwitterConsumerClient
 
 # Logger Module
 logger = custom_logger("Fomo-FW")
@@ -32,13 +32,13 @@ def initialize() -> Tuple[Dict, Dict, Dict, Dict]:
     Initializes the configurations
     :return: Set of 4 configurations (Show, Memory, Fomo, Persona)
     """
-    show_config = json_loader("src/config/show_config.json")
+    show_config = json_loader("config/show_config.json")
     logger.info("Show configurations loaded")
-    memory_config = json_loader("./src/config/memory_config.json")
+    memory_config = json_loader("config/memory_config.json")
     logger.info("Memory configurations loaded")
-    fomo_config = json_loader("src/config/fomo_config.json")
+    fomo_config = json_loader("config/fomo_config.json")
     logger.info("Memory configurations loaded")
-    persona_config = json_loader("src/config/persona_config.json")
+    persona_config = json_loader("config/persona_config.json")
     logger.info("Persona configurations loaded")
     return show_config, memory_config, fomo_config, persona_config
 

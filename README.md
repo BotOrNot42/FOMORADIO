@@ -52,32 +52,73 @@ The FOMO Radio Framework currently integrates the following technologies:
    OpenAI's GPT models are used for natural language processing and summarization.
 
 3. **Voice Generation**:  
-   ElevenLabs is used for generating high-quality, natural-sounding voice outputs.
+   ElevenLabs is used to generate high-quality, natural-sounding voice outputs.
 
 ### How to Use Alternative Services
-If you'd like to use other data collection sources, AI models, or voice generation tools, you'll need to make changes to the following files:
+The FOMO Radio Framework is designed to be flexible, allowing you to use alternative data collection sources, AI models, or voice generation tools. To make these changes, you’ll need to modify specific files or add new implementations in the framework as outlined below:
 
-1. **Data Collection (Twitter v2 API)**:  
-   Update the integration logic in the `data_collection.py` file. Replace Twitter API endpoints with your preferred data source APIs.
+---
 
-2. **AI Models (OpenAI)**:  
-   Modify the AI model integration in `ai_processing.py`. Replace the OpenAI API calls with the corresponding SDK or API calls for your desired AI service.
+### 1. Data Collection
+If you'd like to fetch data from a source other than Twitter API v2, you need to:
+- **Add a new data collector**:  
+  Add your custom logic in the `data_collectors` folder by creating a new Python file. For example:
+  - Create `data_collectors/custom_data_collector.py` to implement fetching logic for your desired source.
+- **Update `run.py`**:  
+  Import your custom data collector module and replace or integrate it with the existing data fetching process.
 
-3. **Voice Generation (ElevenLabs)**:  
-   Update the voice synthesis logic in `voice_generation.py`. Replace ElevenLabs API calls with your preferred text-to-speech service.
+#### Example:
+```python
+from data_collectors.custom_data_collector import CustomDataCollector
 
-### Example:
-If you're replacing Twitter API with a news API:  
-1. Replace the Twitter API fetch logic in `data_collection.py` with requests to the news API.
-2. Adjust the data parsing logic to match the new API's response format.
+data_collector = CustomDataCollector()
+data = data_collector.fetch_data()
+```
 
-If you're switching to another AI model like **Anthropic** or **Llama**:  
-1. Update API calls in `ai_processing.py` to integrate the alternative AI model.
-2. Ensure the prompt structure is compatible with the new model.
+---
 
-If you're switching to another voice generation tool like **Amazon Polly**:  
-1. Update the `voice_generation.py` file to use Amazon Polly’s SDK or API.  
-2. Adjust settings like voice type, language, and speed to match your requirements.
+### 2. Audio Script Generation
+To use an AI model other than OpenAI for generating audio scripts:
+- **Add or modify a client in the `script_generators` folder**:  
+  For example, create `script_generators/custom_llm_client.py` to implement your desired large language model (LLM).
+- **Update `script_generators/llm_client.py`**:  
+  Modify or replace the integration to use your custom LLM.
+- **Update `run.py`**:  
+  Import and use your custom LLM client.
+
+#### Example:
+```python
+from script_generators.custom_llm_client import CustomLLMClient
+
+llm_client = CustomLLMClient()
+script = llm_client.generate_script(data)
+```
+
+---
+
+### 3. Voice Generation
+If you'd like to use a different voice generation tool (e.g., Amazon Polly, Google Text-to-Speech):
+- **Modify `tts_transformers/base.py`**:  
+  Add a custom class to interface with your preferred TTS (text-to-speech) service. Implement methods for generating and processing audio.
+- **Update `run.py`**:  
+  Import your new TTS transformer and replace or integrate it with the existing voice generation process.
+
+#### Example:
+```python
+from tts_transformers.custom_tts import CustomTTS
+
+tts = CustomTTS()
+audio = tts.generate_voice(script)
+```
+
+---
+
+### Summary of Changes
+- **Data Collection**: Add your custom logic in the `data_collectors` folder and integrate it in `run.py`.
+- **Audio Script Generation**: Create or modify a client in `script_generators/` and update `run.py`.
+- **Voice Generation**: Implement your custom TTS tool in `tts_transformers/base.py` and integrate it in `run.py`.
+
+By following this approach, you can easily customize the framework to suit your unique requirements, whether it’s pulling data from a specific API, using a different AI model, or leveraging an alternative voice generation service.
 
 ---
 

@@ -3,7 +3,6 @@
 
 The FOMO Radio Framework is designed to revolutionize content consumption by combining AI, real-time data aggregation, and voice synthesis. Whether you're building autonomous radio stations or creating personalized audio summaries, this framework empowers you to deliver intelligent, engaging and tailored audio experiences.
 
----
 
 ## Architecture and Design
 

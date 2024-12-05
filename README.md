@@ -7,10 +7,12 @@ The FOMO Radio Framework is designed to revolutionize content consumption by com
 
 ## Architecture and Design
 
-The framework operates through three primary stages:
+The framework operates through four primary stages:
 1. **Data Collection**
-2. **Audio Script Generation**
-3. **Voice Synthesis**
+2. **Script Generation**
+3. **TTS Transformers**
+4. **Content Delivery**
+   
 
 The dynamic architecture ensures **flexibility**, **modularity**, and **scalability** for a variety of use cases.
 ![Rough Chart - Experience](https://github.com/user-attachments/assets/25db07ca-16bc-4572-9404-e758425954b0)
@@ -143,13 +145,11 @@ By following this approach, you can easily customize the framework to suit your 
 
 ## 🚀 Quick Start
 
----
-## 📚 Dependencies
+### 📚 Dependencies
 Key dependencies include:
 - `ffmpeg`
 - `mem0ai`
 
----
 ### 1. **Set Up a Virtual Environment**
 Use Python 3.11+ for the framework. Set up a virtual environment:
 

@@ -9,6 +9,9 @@
   },
   "mp4": {
     "resolution": [1280, 720],
-    "fps": 30
+    "fps": 30,
+    "title_color": [0, 165, 255],
+    "subtitle_color": [255, 255, 255],
+    "waveform_color": [0, 255, 255]
   }
 }

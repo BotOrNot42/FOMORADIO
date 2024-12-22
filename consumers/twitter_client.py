@@ -1,7 +1,7 @@
 """
 Twitter Consumer Client for FOMO
 """
-from typing import Tuple, Union
+from typing import Tuple, Union, Any
 import time
 import tweepy
 
@@ -58,7 +58,7 @@ class TwitterConsumerClient:
             return False, str(exception)
 
     def post_tweet_with_media(
-        self, tweet_content: str, path: str
+        self, tweet_content: str, path: str | Any
     ) -> Tuple[bool, Union[str, None]]:
         """
         Helper Method to post tweets in Twitter with media

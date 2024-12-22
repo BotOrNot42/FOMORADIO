@@ -1,6 +1,7 @@
 """
 Main Module for the FomoRadio
 """
+import os
 from typing import Tuple, Dict, List
 from datetime import datetime
 from uuid import uuid4
@@ -16,15 +17,18 @@ from tts_transformers import TTSClient
 from converters import mp3_to_mp4_converter
 from consumers import TwitterConsumerClient
 
+# Loading Folders
+project_dir = os.path.dirname(os.path.abspath(__file__))
+
 # Logger Module
-logger = custom_logger("Fomo-FW")
+logger = custom_logger("Fomo-FW", os.path.join(project_dir, cf.LOG_FOLDER))
 logger.info("Fomo Framework started")
 
 # Create Logs and Media Directory
 logger.info("Logger directory initialized")
-dir_checker(cf.LOG_FOLDER)
+dir_checker(os.path.join(project_dir, cf.LOG_FOLDER))
 logger.info("Media directory initialized")
-dir_checker(cf.MEDIA_FOLDER)
+dir_checker(os.path.join(project_dir, cf.MEDIA_FOLDER))
 
 
 def initialize() -> Tuple[Dict, Dict, Dict, Dict]:
@@ -32,13 +36,13 @@ def initialize() -> Tuple[Dict, Dict, Dict, Dict]:
     Initializes the configurations
     :return: Set of 4 configurations (Show, Memory, Fomo, Persona)
     """
-    show_config = json_loader("config/show_config.json")
+    show_config = json_loader(os.path.join(project_dir, "config", "show_config.json"))
     logger.info("Show configurations loaded")
-    memory_config = json_loader("config/memory_config.json")
+    memory_config = json_loader(os.path.join(project_dir, "config", "memory_config.json"))
     logger.info("Memory configurations loaded")
-    fomo_config = json_loader("config/fomo_config.json")
-    logger.info("Memory configurations loaded")
-    persona_config = json_loader("config/persona_config.json")
+    fomo_config = json_loader(os.path.join(project_dir, "config", "fomo_config.json"))
+    logger.info("Fomo FW configurations loaded")
+    persona_config = json_loader(os.path.join(project_dir, "config", "persona_config.json"))
     logger.info("Persona configurations loaded")
     return show_config, memory_config, fomo_config, persona_config
 
@@ -163,14 +167,15 @@ def main():
             timestamp = datetime.utcnow().strftime("%Y%m%d_%H%M%S")
             radio_name = show_config.get("radio_name").replace(" ", "")
             show_id = each_show.get("show_id")
-            file_name = (
-                f"{cf.MEDIA_FOLDER}/{radio_name}-{show_id}-{unique_id}-{timestamp}"
-            )
+            file_name = f"{radio_name}-{show_id}-{unique_id}-{timestamp}"
+            file_name = file_name.replace(" ", "_")
+            mp3_path = os.path.join(project_dir, cf.MEDIA_FOLDER, f"{file_name}.mp3")
+            mp4_path = os.path.join(project_dir, cf.MEDIA_FOLDER, f"{file_name}.mp4")
             audio_generator = tts_interact(
                 tts_client, generated_script, current_rj_voice
             )
             is_audio_saved, audio_errors = save_file(
-                audio_generator, f"{file_name}.mp3"
+                audio_generator, mp3_path
             )
             if is_audio_saved:
                 logger.info("Audio File saved as %s.mp3", file_name)
@@ -179,13 +184,13 @@ def main():
 
             # Generating video file
             show_details = (
-                f"{each_show.get('name')} | Host: {current_rj_name}  | "
-                f"Episode: {episode_count} | {current_time}"
+                f"{each_show.get('name')} | Host - {current_rj_name}  | "
+                f"Episode - {episode_count} | {current_time}"
             )
             is_video_saved, video_errors = mp3_to_mp4_converter(
                 fomo_config.get("mp4"),
-                f"{file_name}.mp3",
-                f"{file_name}.mp4",
+                mp3_path,
+                mp4_path,
                 cf.TEMP_VIDEO_FILE,
                 show_details,
                 show_config.get("radio_name")
@@ -203,7 +208,7 @@ def main():
                 cf.x_access_token_secret,
             )
             is_tweeted, posting_errors = twitter_consumer_client.post_tweet_with_media(
-                generated_content, f"{file_name}.mp4"
+                generated_content, mp4_path
             )
             if is_tweeted:
                 logger.info("Content consumed by %s", twitter_consumer_client.source)

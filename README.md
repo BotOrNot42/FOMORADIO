@@ -202,6 +202,26 @@ python run.py
 
 ---
 
+## OAuth for Data Collectors and Consumers
+
+To authenticate and initiate the OAuth process for a specific client (e.g., Twitter), you can use the following command:
+```bash
+python oauth.py <client>
+```
+Replace <client> with the name of the client you want to authenticate with (e.g., twitter, google).
+
+For example, to authenticate with Twitter, run:
+```bash
+python oauth.py twitter
+```
+
+To see the set of supported clients, run
+```bash
+python oauth.py list
+```
+
+---
+
 ## ⚠️ Limitations
 
 The current version of the framework supports one show with multiple hosts. While this setup is ideal for focused use cases, future updates will expand functionality to support multi-show environments, enabling the creation of diverse programming schedules.

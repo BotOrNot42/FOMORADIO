@@ -124,7 +124,7 @@ def home():
             <h4>Enter Your Twitter API Credentials</h4>
             <form method="POST">
                 <div class="form-group">
-                    <label for="consumer_key">Consumer Key:</label>
+                    <label for="consumer_key">Consumer Api Key:</label>
                     <input type="text" name="consumer_key" required>
                 </div>
                 <div class="form-group">
@@ -132,11 +132,11 @@ def home():
                     <input type="text" name="consumer_secret" required>
                 </div>
                 <div class="form-group">
-                    <label for="access_token">Access Token:</label>
+                    <label for="access_token">Client ID:</label>
                     <input type="text" name="access_token" required>
                 </div>
                 <div class="form-group">
-                    <label for="access_token_secret">Access Token Secret:</label>
+                    <label for="access_token_secret">Client Secret:</label>
                     <input type="text" name="access_token_secret" required>
                 </div>
                 <button type="submit">Submit</button>

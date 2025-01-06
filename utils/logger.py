@@ -11,7 +11,7 @@ LOG_DIRECTORY = "logs"
 FORMATTER = logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(message)s")
 
 
-def custom_logger(app_name) -> logging.Logger:
+def custom_logger(app_name, path) -> logging.Logger:
     """
     Custom Logger which creates the file based logging based on the
     App Name
@@ -22,9 +22,7 @@ def custom_logger(app_name) -> logging.Logger:
     c_logger.setLevel(logging.DEBUG)
     current_date = datetime.now().strftime("%Y-%m-%d")
     log_filename = f"{app_name.replace(' ', '')}-{current_date}.log"
-    # Ensure the log directory exists
-    dir_checker(LOG_DIRECTORY)
-    log_filepath = os.path.join(LOG_DIRECTORY, log_filename)
+    log_filepath = os.path.join(path, log_filename)
     # File Handler
     file_handler = logging.FileHandler(log_filepath)
     file_handler.setLevel(logging.DEBUG)

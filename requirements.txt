@@ -12,6 +12,8 @@ anyio==4.6.2.post1
     #   openai
 backoff==2.2.1
     # via posthog
+blinker==1.9.0
+    # via flask
 certifi==2024.8.30
     # via
     #   httpcore
@@ -19,11 +21,15 @@ certifi==2024.8.30
     #   requests
 charset-normalizer==3.4.0
     # via requests
+click==8.1.8
+    # via flask
 dateutils==0.6.12
     # via -r requirements.in
 distro==1.9.0
     # via openai
 elevenlabs==1.13.1
+    # via -r requirements.in
+flask==3.1.0
     # via -r requirements.in
 grpcio==1.68.0
     # via
@@ -51,8 +57,16 @@ idna==3.10
     #   anyio
     #   httpx
     #   requests
+itsdangerous==2.2.0
+    # via flask
+jinja2==3.1.5
+    # via flask
 jiter==0.8.0
     # via openai
+markupsafe==3.0.2
+    # via
+    #   jinja2
+    #   werkzeug
 mem0ai==0.1.33
     # via -r requirements.in
 monotonic==1.6
@@ -141,6 +155,8 @@ urllib3==2.2.3
     #   requests
 websockets==14.1
     # via elevenlabs
+werkzeug==3.1.3
+    # via flask
 
 # The following packages are considered to be unsafe in a requirements file:
 # setuptools

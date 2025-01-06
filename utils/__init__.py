@@ -1,7 +1,7 @@
 """
 Utility Functions for Fomo
 """
-from typing import Tuple, Union
+from typing import Tuple, Union, Any
 import json
 import os
 from .eexceptions import FomoException
@@ -32,7 +32,7 @@ def dir_checker(path) -> None:
             raise OSError(f"Error creating log directory: {exception}") from exception
 
 
-def save_file(buffer, path: str) -> Tuple[bool, Union[None, str]]:
+def save_file(buffer, path: str | Any) -> Tuple[bool, Union[None, str]]:
     """
     Saves a file in the given path provided the buffers
     :param buffer: Buffer of the file to be saved

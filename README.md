@@ -1,42 +1,62 @@
 
 # FOMO Radio Framework 🎙️
 
-Welcome to the **FOMO Radio Framework**, an open-source solution to build AI-powered autonomous radio stations tailored for your use cases. Whether it's creating a dynamic crypto news station like **FOMO Radio** with RJ Diana or adapting it for sports commentary, market trends, or personalized summaries, this framework has you covered.
+The FOMO Radio Framework is designed to revolutionize content consumption by combining AI, real-time data aggregation, and voice synthesis. Whether you're building autonomous radio stations or creating personalized audio summaries, this framework empowers you to deliver intelligent, engaging and tailored audio experiences.
+
+
+## Architecture and Design
+
+The framework operates through four primary stages:
+1. **Data Collection**
+2. **Script Generation**
+3. **TTS Transformers**
+4. **Content Delivery**
+   
+
+The dynamic architecture ensures **flexibility**, **modularity**, and **scalability** for a variety of use cases.
+![Rough Chart - Experience](https://github.com/user-attachments/assets/25db07ca-16bc-4572-9404-e758425954b0)
 
 ---
 
-## 🌟 Features
+## Features
 
-1. **AI-Powered Content Aggregation**  
-   Aggregate and analyze content from diverse sources with seamless integration.
+### **AI-Powered Content Aggregation (Data Collectors)**
+Seamlessly gather data from diverse platforms.
 
-2. **Dynamic Memory Management**  
-   Powered by the `mem0` library, it maintains a dynamic memory system, enabling accurate recall of the latest and most relevant content.
+### **Dynamic Memory Management (Core)**
+Leverages `mem0` for maintaining contextual relevance.
 
-3. **Automatic Summarization**  
-   Structures and summarizes data automatically, preparing it for user engagement.
+### **Automatic Summarization (Script Generators)**
+Converts raw data into structured, audience-ready summaries.
 
-4. **Multimedia Output**  
-   Generates audio and video summaries, ready for distribution across platforms.
+### **Multimedia Output (TTS Transformers)**
+Generates audio and video summaries, ready for distribution across platforms.
 
-5. **Export Capabilities**  
-   Distributes summaries and multimedia files to social media, streaming services, or custom destinations.
+### **Export Capabilities (Consumers)**
+Distributes summaries and multimedia files to social media, streaming services, or custom destinations.
 
 ---
 
 ## 💡 Use Cases
 
-- 🎙️ **AI-Powered Radio Stations**  
-   Create fully autonomous, topic-specific radio stations pulling real-time data.
-   
-- 🏟️ **Live Sports Commentary**  
-   Deliver AI-driven play-by-play sports commentary, analyzing data from live feeds.
+The FOMO Radio Framework is designed with adaptability and customization at its core, enabling developers to modify and extend it for a wide range of use cases. Below are just a few possibilities to inspire your next project:
 
-- 📰 **Unbiased News Production**  
-   Pull verified content from multiple sources to create an autonomous, unbiased news channel.
+- **Crypto News Updates**:  
+  Create real-time audio feeds for crypto enthusiasts by aggregating data from platforms like Twitter, Telegram, and news sources to deliver market trends, token updates, and trading insights.
 
-- 🧑‍💻 **Personalized AI Companions**  
-   Summarize news, social media trends, or market insights on-demand with unmatched clarity.
+- **Live Event Coverage**:  
+  Stream AI-powered, play-by-play commentary for sports, conferences, or breaking news events by integrating live data feeds.
+
+- **Personalized Content Delivery**:  
+  Build personalized AI companions that curate, summarize, and narrate news, social media trends, or market insights tailored to individual users' preferences.
+
+- **Autonomous News Agents**:  
+  Develop unbiased, fully automated news channels that aggregate, verify, and synthesize content from multiple sources to deliver fact-based, engaging audio summaries.
+
+- **Entertainment Radio Stations**:  
+  Create interactive, themed radio shows for entertainment niches such as memes, movie reviews, or celebrity updates.
+
+The framework’s modular structure allows seamless integration of new data sources, AI models, or voice synthesis tools to suit your unique needs.
 
 ---
 
@@ -124,6 +144,11 @@ By following this approach, you can easily customize the framework to suit your 
 
 ## 🚀 Quick Start
 
+### 📚 Dependencies
+Key dependencies include:
+- `ffmpeg`
+- `mem0ai`
+
 ### 1. **Set Up a Virtual Environment**
 Use Python 3.11+ for the framework. Set up a virtual environment:
 
@@ -177,40 +202,59 @@ python run.py
 
 ---
 
-## 🎯 Extendability
+## OAuth for Data Collectors and Consumers
 
-The FOMO Radio Framework is built with customization in mind. Feel free to adapt it for:
-- Cryptocurrency updates
-- Live event coverage
-- Personalized content delivery
-- Autonomous agents for news or entertainment
+To authenticate and initiate the OAuth process for a specific client (e.g., Twitter), you can use the following command:
+```bash
+python oauth.py <client>
+```
+Replace <client> with the name of the client you want to authenticate with (e.g., twitter, google).
+
+For example, to authenticate with Twitter, run:
+```bash
+python oauth.py twitter
+```
+
+To see the set of supported clients, run
+```bash
+python oauth.py list
+```
 
 ---
 
 ## ⚠️ Limitations
-- Currently supports one show with multiple hosts. Future updates will include multi-show support.
+
+The current version of the framework supports one show with multiple hosts. While this setup is ideal for focused use cases, future updates will expand functionality to support multi-show environments, enabling the creation of diverse programming schedules.
+
+For now, certain features such as multilingual support and large-scale simultaneous data processing are in development, with enhancements planned for upcoming releases.
 
 ---
 
-## 🛠️ Issues
-Encounter any issues or have feature suggestions? Let us know via GitHub Issues!
+## 🛠️ Issues and Suggestions
+
+Your feedback is invaluable! If you encounter any issues, have suggestions for improvement, or want to share a new feature idea, please don’t hesitate to connect with us. You can:
+
+- **Report Bugs**: Use the [GitHub Issues tab](https://github.com/BotOrNot42/FOMORADIO/issues) to let us know about any problems you face.
+- **Request Features**: Suggest new capabilities or improvements to make the framework even better.
+- **Contribute to Development**: Join the community of developers working to refine and expand the FOMO Radio Framework.
+
+Together, we can shape the future of autonomous, AI-driven content delivery.
 
 ---
+## 🌐 Explore More FOMO Radio Content
 
-## 📚 Dependencies
-Key dependencies include:
-- `ffmpeg`
-- `mem0ai`
+- **Website (Recent & Past Shows)**:  
+  [https://fomofm.show](https://fomofm.show)
 
----
+- **🎧 All Shows Broadcasted on X (formerly Twitter)**:  
+  [https://x.com/FomoRadioAi](https://x.com/FomoRadioAi)
 
-## 🤝 Community and Contributions
-We welcome contributions and ideas! Join our community and help us improve:
+- **📻 Listen to Shows On-Demand**:  
+  [https://audio.fomofm.show](https://audio.fomofm.show)
 
-- [GitHub Issues](#): Report bugs or suggest features.
-- [Discord](#): Connect with other developers.
+- **🎙️ Spotify Playlist**:  
+  [https://open.spotify.com/show/0pLewfsLrxDrwKRgihRmBr](https://open.spotify.com/show/0pLewfsLrxDrwKRgihRmBr)
 
----
 
 **Build the future of AI-powered radio with the FOMO Radio Framework!**
 

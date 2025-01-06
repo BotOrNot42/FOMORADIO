@@ -10,6 +10,8 @@ set radio_handle=
 :: Twitter Account handles of the influencers to watch for.
 :: Should be separated by commas without spaces and '@'.
 set influencers=
+:: Social Data API Key for fetching tweets.
+set social_data_api_key=
 
 :: Script Generators
 :: OpenAI Key for summarizing the contents and generating new scripts

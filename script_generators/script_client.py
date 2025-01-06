@@ -41,14 +41,16 @@ class ScriptClient:
             )
         return MemoryClient.memory_to_content(memories)
 
-    def generate_prompt(self, agent: str, current_time: str) -> str:
+    def generate_prompt(self, agents: List, current_time: str) -> str:
         """
         Generate the prompt used for creating the script for the show
-        :param agent: Source of the collected data to fed to the script generation
+        :param agents: Sources of the collected data to fed to the script generation
         :param current_time: Current time of the show
         :return: Prompt to create the show script
         """
-        contents = self.extract_memories(agent)
+        contents = []
+        for each_agent in agents:
+            contents.extend(self.extract_memories(each_agent))
         return SCRIPT_GENERATION_PROMPT.format(
             show_name=self.show_details.get("name"),
             show_motive=self.show_details.get("description"),
@@ -60,13 +62,15 @@ class ScriptClient:
             formatted_content=contents,
         )
 
-    def generate_content(self, agent: str) -> str:
+    def generate_content(self, agents: List) -> str:
         """
         Generate the content used for consuming the contents for the show
-        :param agent: Source of the collected data to fed to the script generation
+        :param agents: Sources of the collected data to fed to the script generation
         :return: Prompt to create the show script
         """
-        contents = self.extract_memories(agent)
+        contents = []
+        for each_agent in agents:
+            contents.extend(self.extract_memories(each_agent))
         return CONTENT_GENERATION_PROMPT.format(
             show_name=self.show_details.get("name"),
             host_name=self.current_host.get("host_name"),

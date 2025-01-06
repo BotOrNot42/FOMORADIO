@@ -10,7 +10,7 @@ from config import configuration as cf
 from utils import json_loader, save_file, dir_checker
 from activities import wait_for_next_show
 from memory import MemoryClient
-from data_collectors import TwitterClient
+from data_collectors import TwitterClient, SocialDataClient
 from script_generators import ScriptClient, LLMClient
 from tts_transformers import TTSClient
 from converters import mp3_to_mp4_converter
@@ -63,10 +63,11 @@ def data_collectors():
     should be given a tuple of records and its sources.
     :return: Contents from Collectors with its source information
     """
-    twitter_client = TwitterClient(
-        cf.x_bearer_token, cf.x_radio_handle, cf.x_influencers
-    )
-    return twitter_client.process(), twitter_client.source
+    social_data_client = SocialDataClient(cf.social_data_api_key, cf.x_radio_handle)
+    data = [
+        (social_data_client.process(), social_data_client.source),
+    ]
+    return data
 
 
 def memory_updater(contents: List, persona_config: List) -> List:
@@ -106,16 +107,19 @@ def main():
             continue
 
         # Collecting the data from multiple sources
-        contents, source = data_collectors()
-        spoken_users = [i.get("user") for i in contents]
-        logger.info("Got %d contents from %s", len(contents), source)
-        if len(contents) == 0:
-            max_retries -= 1
-            logger.info("Trying different logic to fetch content")
-            continue
+        spoken_users = []
+        sources = []
+        for contents, source in data_collectors():
+            spoken_users.extend([i.get("user") for i in contents])
+            sources.append(source)
+            logger.info("Got %d contents from %s", len(contents), source)
+            if len(contents) == 0:
+                max_retries -= 1
+                logger.info("Trying different logic to fetch content")
+                continue
 
-        # Loading Contents to Personas
-        persona_config = memory_updater(contents, persona_config)
+            # Loading Contents to Personas
+            persona_config = memory_updater(contents, persona_config)
 
         # Iterating through shows
         for each_show in show_config.get("shows"):
@@ -143,14 +147,14 @@ def main():
                 filter_rjs[current_rj_index],
                 filter_rjs[next_rj_index].get("host_name"),
             )
-            script_prompt = script_client.generate_prompt(source, current_time)
+            script_prompt = script_client.generate_prompt(sources, current_time)
             generated_script = llm_interact(llm_client, script_prompt)
             current_rj_name = filter_rjs[current_rj_index].get("host_name")
             cleaned_script = generated_script.replace("\n", " ")
             logger.info("Script for %s - %s", current_rj_name, cleaned_script)
 
             # Generating the content for posting
-            content_prompt = script_client.generate_content(source)
+            content_prompt = script_client.generate_content(sources)
             generated_content = llm_interact(llm_client, content_prompt)
             cleaned_content = generated_content.replace("\n", " ")
             logger.info("Content for %s - %s", current_rj_name, cleaned_content)
@@ -160,7 +164,7 @@ def main():
             tts_client, tts_interact = TTSClient(
                 fomo_config.get("tts"), cf.tts_api_key
             ).initialize_client()
-            timestamp = datetime.utcnow().strftime("%Y%m%d_%H%M%S")
+            timestamp = datetime.now(pytz.UTC).strftime("%Y%m%d_%H%M%S")
             radio_name = show_config.get("radio_name").replace(" ", "")
             show_id = each_show.get("show_id")
             file_name = (

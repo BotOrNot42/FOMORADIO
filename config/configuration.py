@@ -12,6 +12,9 @@ social_data_api_key = os.environ.get("social_data_api_key")
 # TTS Environment Variables
 tts_api_key = os.environ.get("tts_api_key")
 
+# Script Generator Environment Variables
+llm_api_key = os.environ.get("llm_api_key")
+
 # Folder Environment Variables
 MEDIA_FOLDER = "media"
 LOG_FOLDER = "logs"

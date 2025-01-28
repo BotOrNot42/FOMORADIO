@@ -67,8 +67,12 @@ def data_collectors():
     should be given a tuple of records and its sources.
     :return: Contents from Collectors with its source information
     """
+    twitter_client = TwitterClient(
+        cf.x_bearer_token, cf.x_radio_handle, cf.x_influencers
+    )
     social_data_client = SocialDataClient(cf.social_data_api_key, cf.x_radio_handle)
     data = [
+        (twitter_client.process(), twitter_client.source),
         (social_data_client.process(), social_data_client.source),
     ]
     return data
@@ -125,6 +129,9 @@ def main():
             # Loading Contents to Personas
             persona_config = memory_updater(contents, persona_config)
 
+        # De-duping the users
+        spoken_users = list(set(spoken_users))
+
         # Iterating through shows
         for each_show in show_config.get("shows"):
             # Loop variables
@@ -140,7 +147,8 @@ def main():
             current_rj_index = rj_index % len(filter_rjs)
             next_rj_index = (rj_index + 1) % len(filter_rjs)
             llm_client, llm_interact = LLMClient(
-                fomo_config.get("llm")
+                fomo_config.get("llm"),
+                cf.llm_api_key
             ).initialize_client()
 
             # Generating the show script

@@ -16,6 +16,8 @@ set social_data_api_key=
 :: Script Generators
 :: OpenAI Key for summarizing the contents and generating new scripts
 set OPENAI_API_KEY=
+:: LLM Key for DeepSeek AI
+set llm_api_key=
 :: Text to Speech Module Key - By Default it points to Eleven Labs Key
 set tts_api_key=
 

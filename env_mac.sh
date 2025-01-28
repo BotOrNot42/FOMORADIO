@@ -16,6 +16,8 @@ export social_data_api_key=""
 ### Script Generators
 # OpenAI Key for summarizing the contents and generating new scripts
 export OPENAI_API_KEY=""
+# LLM Key for DeepSeek AI
+export llm_api_key=""
 # Text to Speech Module Key - By Default it points to Eleven Labs Key
 export tts_api_key=""
 

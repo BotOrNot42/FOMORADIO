@@ -105,6 +105,12 @@ To use an AI model other than OpenAI for generating audio scripts:
   Modify or replace the integration to use your custom LLM.
 - **Update `run.py`**:  
   Import and use your custom LLM client.
+- Supported Platforms: 
+  - `openai`
+    - Models - `gpt-4o`, `gpt-4o-mini`
+  - `deepseekai` 
+    - Models - `deepseek-chat`
+- To use the specific LLM client, try modifying the `fomo_config.json` from the `config` folder.
 
 #### Example:
 ```python
@@ -147,6 +153,7 @@ By following this approach, you can easily customize the framework to suit your 
 ### 📚 Dependencies
 Key dependencies include:
 - `ffmpeg`
+- `openai`
 - `mem0ai`
 
 ### 1. **Set Up a Virtual Environment**
